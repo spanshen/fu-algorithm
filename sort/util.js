@@ -22,9 +22,20 @@ function doneLog(arr) {
 	console.log(arr);
 }
 
+function checkAsc(arr) {
+	for(let i = 0; i < arr.length; i++) {
+		if(arr[i + 1] < arr[i]) {
+			console.log(false);
+			return;
+		}
+	}
+	console.log(true)
+}
+
 module.exports = {
 	generateArray,
 	originLog,
 	doneLog,
-	swap
+	swap,
+	checkAsc
 };
