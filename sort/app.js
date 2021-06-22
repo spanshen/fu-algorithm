@@ -8,7 +8,8 @@ util.originLog(arr);
 
 // 排序
 // methods.bubble(arr);
-methods.select(arr);
+// methods.select(arr);
+methods.insert(arr);
 
 // log排序后数组，和排序前对比
 util.doneLog(arr);

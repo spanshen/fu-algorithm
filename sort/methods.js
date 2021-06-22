@@ -28,7 +28,20 @@ function select(arr) {
 	}
 }
 
+// 插入
+function insert(arr) {
+	for (let i = 1; i < arr.length; i++) {
+		let j = i, cur = arr[i];
+		while(j > 0 && cur < arr[j - 1]) {
+			arr[j] = arr[j - 1];
+			j--;
+		}
+		arr[j] = cur;
+	}
+}
+
 module.exports = {
 	bubble,
-	select
+	select,
+	insert
 }
