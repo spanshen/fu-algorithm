@@ -1,5 +1,5 @@
-let util = require('./util');
-let methods = require('./methods');
+let util = require('../util');
+let methods_practice = require('./methods_practice');
 
 // 生成数组
 let arr = util.generateArray(5);
@@ -7,11 +7,9 @@ let arr = util.generateArray(5);
 util.originLog(arr);
 
 // 排序
-// methods.bubbleSort(arr);
-// methods.selectSort(arr);
-// methods.insertSort(arr);
-// methods.quickSort(arr, 0, arr.length - 1);
-// let res = methods.mergeSort(arr)
+// methods_practice.bubble(arr);
+// methods_practice.select(arr);
+methods_practice.insert(arr);
 
 // log排序后数组，和排序前对比
 util.doneLog(arr);

@@ -1,7 +1,7 @@
 const util = require('./util');
 
 // 冒泡
-function bubble(arr) {
+function bubbleSort(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = 0; j < arr.length - i; j++) {
 			if (arr[j] > arr[j + 1]) {
@@ -12,7 +12,7 @@ function bubble(arr) {
 }
 
 // 选择
-function select(arr) {
+function selectSort(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		let min = arr[i];
 		let index = i;
@@ -29,10 +29,10 @@ function select(arr) {
 }
 
 // 插入
-function insert(arr) {
+function insertSort(arr) {
 	for (let i = 1; i < arr.length; i++) {
 		let j = i, cur = arr[i];
-		while(j > 0 && cur < arr[j - 1]) {
+		while (j > 0 && cur < arr[j - 1]) {
 			arr[j] = arr[j - 1];
 			j--;
 		}
@@ -40,8 +40,58 @@ function insert(arr) {
 	}
 }
 
+// 快速
+function quickSort(arr, start, end) {
+	if (start >= end) {
+		return;
+	}
+	let pivot = arr[start], i = start, j = end;
+	while (i < j) {
+		while (j > i && arr[j] > pivot) {
+			j--;
+		}
+		// 这里注意是arr[i] <= pivot，因为一开始i = start，如果是<，那i就不会动，一直停在最开始
+		while (i < j && arr[i] <= pivot) {
+			i++;
+		}
+		if (i < j) {
+			util.swap(arr, i, j);
+		}
+	}
+	arr[start] = arr[i];
+	arr[i] = pivot;
+	quick(arr, start, i - 1);
+	quick(arr, i + 1, end);
+}
+
+// 归并排序工具函数。合并两个有序数组
+function merge2Array(A, B) {
+	let res = [];
+	while(A.length > 0 && B.length > 0) {
+		if(A[0] < B[0]) {
+			res.push(A.shift());
+		}else {
+			res.push(B.shift());
+		}
+	}
+	return res.concat(A).concat(B);
+}
+// 归并
+function mergeSort(arr) {
+	if(arr.length <= 1) {
+		return arr;
+	}
+	let mid = Math.floor(arr.length / 2);
+	let left = arr.slice(0, mid);
+	let right = arr.slice(mid);
+	return merge2Array(mergeSort(left), mergeSort(right));
+}
+
+
 module.exports = {
-	bubble,
-	select,
-	insert
+	bubbleSort,
+	selectSort,
+	insertSort,
+	quickSort,
+	mergeSort
 }
