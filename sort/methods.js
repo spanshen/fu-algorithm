@@ -60,8 +60,8 @@ function quickSort(arr, start, end) {
 	}
 	arr[start] = arr[i];
 	arr[i] = pivot;
-	quick(arr, start, i - 1);
-	quick(arr, i + 1, end);
+	quickSort(arr, start, i - 1);
+	quickSort(arr, i + 1, end);
 }
 
 // 归并排序工具函数。合并两个有序数组
@@ -87,11 +87,26 @@ function mergeSort(arr) {
 	return merge2Array(mergeSort(left), mergeSort(right));
 }
 
+// 希尔
+function shellSort(arr) {
+	for(let gap = Math.floor(arr.length / 2); gap > 0; gap = Math.floor(gap / 2)) {
+		for(let i = gap; i < arr.length; i++) {
+			let j = i, cur = arr[i];
+			while(j - gap >= 0 && cur < arr[j - gap]) {
+				arr[j] = arr[j - gap];
+				j = j - gap;
+			}
+			arr[j] = cur;
+		}
+	}
+}
+
 
 module.exports = {
 	bubbleSort,
 	selectSort,
 	insertSort,
 	quickSort,
-	mergeSort
+	mergeSort,
+	shellSort
 }

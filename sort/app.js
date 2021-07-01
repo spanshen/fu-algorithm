@@ -1,10 +1,11 @@
 let util = require('./util');
 let methods = require('./methods');
 
-// 生成数组
-let arr = util.generateArray(5);
-// log排序前数组，用于对比
-util.originLog(arr);
+let arr = util.generateArray(100);// 生成数组
+
+util.originLog(arr);// log排序前数组，用于对比
+
+console.time('sort time');
 
 // 排序
 // methods.bubbleSort(arr);
@@ -12,8 +13,10 @@ util.originLog(arr);
 // methods.insertSort(arr);
 // methods.quickSort(arr, 0, arr.length - 1);
 // let res = methods.mergeSort(arr)
+// methods.shellSort(arr);
 
-// log排序后数组，和排序前对比
-util.doneLog(arr);
-// 检查是否为升序序列
-util.checkAsc(arr);
+console.timeEnd('sort time');
+
+util.doneLog(arr);// log排序后数组，和排序前对比
+
+util.checkAsc(arr);// 检查是否为升序序列
